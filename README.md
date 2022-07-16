@@ -60,6 +60,21 @@ optional arguments:
 Example output
 
 ```sh
+Real Time Data
+Solar voltage: 43.1V
+Solar current: 0.09A
+Solar power: 4W
+Load voltage: 0.0V
+Load current: 0.0A
+Load power: 0W
+Battery voltage: 13.9V
+Battery state of charge: 100%
+Battery temperature: -37°C
+Controller temperature: 48°C
+Maximum solar power today: 51W
+Minimum solar power today: 0W
+Maximum battery voltage today: 14.0V
+Minimum battery voltage today: 13.1V
 ```
 
 ## Python usage

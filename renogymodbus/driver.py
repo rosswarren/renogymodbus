@@ -73,7 +73,7 @@ class RenogyChargeController(minimalmodbus.Instrument):
         register_value = self.read_register(0x0103, 0, 3) & 0x00ff & 0x0ff
         battery_temperature = register_value & 0x00ff & 0x0ff
         battery_temperature_sign = register_value & 0x00ff >> 7
-        battery_temperature = -battery_temperature if battery_temperature_sign == 0 else battery_temperature
+        battery_temperature = -battery_temperature if battery_temperature_sign == 1 else battery_temperature
         return battery_temperature
 
     def get_controller_temperature(self):
@@ -81,7 +81,7 @@ class RenogyChargeController(minimalmodbus.Instrument):
         register_value = self.read_register(0x0103, 0, 3) >> 8
         controller_temperature = register_value & 0x0ff
         controller_temperature_sign = register_value >> 7
-        controller_temperature = -controller_temperature if controller_temperature_sign == 0 else controller_temperature
+        controller_temperature = -controller_temperature if controller_temperature_sign == 1 else controller_temperature
         return controller_temperature
 
     def get_maximum_solar_power_today(self):
