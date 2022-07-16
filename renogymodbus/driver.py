@@ -21,7 +21,6 @@ class RenogyChargeController(minimalmodbus.Instrument):
         self.serial.stopbits = 1
         self.serial.timeout = 1
         self.mode = minimalmodbus.MODE_RTU
-        minimalmodbus.BYTEORDER_BIG= 0
 
         self.clear_buffers_before_each_transaction = True
 
@@ -76,10 +75,6 @@ class RenogyChargeController(minimalmodbus.Instrument):
         battery_temperature_sign = register_value & 0x00ff >> 7
         battery_temperature = -battery_temperature if battery_temperature_sign == 0 else battery_temperature
         return battery_temperature
-
-    def get_remote_battery_temperature(self):
-        """The battery temperature measured by remote temperature sensor"""
-        raise NotImplementedError
 
     def get_controller_temperature(self):
         """Temperature inside equipment"""
