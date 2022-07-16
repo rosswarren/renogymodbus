@@ -70,7 +70,7 @@ class RenogyChargeController(minimalmodbus.Instrument):
 
     def get_battery_temperature(self):
         """battery temperature"""
-        register_value = self.read_register(0x0103, 0, 3) & 0x00ff & 0x0ff
+        register_value = self.read_register(0x0103, 0, 3)
         battery_temperature = register_value & 0x00ff & 0x0ff
         battery_temperature_sign = register_value & 0x00ff >> 7
         battery_temperature = -battery_temperature if battery_temperature_sign == 1 else battery_temperature
