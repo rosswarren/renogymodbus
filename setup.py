@@ -1,12 +1,12 @@
 from setuptools import setup
 
 setup(
-    name="epevermodbus",
-    version="0.0.12",
+    name="renogymodbus",
+    version="0.0.6",
     description="",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/rosswarren/epevermodbus",
+    url="https://github.com/rosswarren/renogymodbus",
     author="Ross Warren",
     author_email="rosswarren4@gmail.com",
     license="MIT",
@@ -14,13 +14,13 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
     ],
-    packages=["epevermodbus"],
+    packages=["renogymodbus"],
     include_package_data=True,
     install_requires=["minimalmodbus", "retrying"],
     test_suite="test",
     entry_points={
         "console_scripts": [
-            "epevermodbus = epevermodbus.command_line:main",
+            "renogymodbus = renogymodbus.command_line:main",
         ],
     },
 )

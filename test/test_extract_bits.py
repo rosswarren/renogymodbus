@@ -1,6 +1,6 @@
 import unittest
 
-from epevermodbus import extract_bits
+from renogymodbus import extract_bits
 
 
 class ExtractBitsTestCase(unittest.TestCase):
