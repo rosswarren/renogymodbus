@@ -24,10 +24,11 @@ def main():
     print(f"Battery voltage: {controller.get_battery_voltage()}V")
     print(f"Battery state of charge: {controller.get_battery_state_of_charge()}%")
     print(f"Battery temperature: {controller.get_battery_temperature()}°C")
-    #print(
-    #    f"Remote battery temperature: {controller.get_remote_battery_temperature()}°C"
-    #)
     print(f"Controller temperature: {controller.get_controller_temperature()}°C")
+    print(f"Maximum solar power today: { controller.get_maximum_solar_power_today()}W")
+    print(f"Minimum solar power today: { controller.get_minimum_solar_power_today()}W")
+    print(f"Maximum battery voltage today: { controller.get_maximum_battery_voltage_today()}V")
+    print(f"Minimum battery voltage today: { controller.get_minimum_battery_voltage_today()}V")
     #print(f"Battery status: {controller.get_battery_status()}")
     #print(f"Charging equipment status: {controller.get_charging_equipment_status()}")
     #print(

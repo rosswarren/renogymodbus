@@ -89,6 +89,22 @@ class RenogyChargeController(minimalmodbus.Instrument):
         controller_temperature = -controller_temperature if controller_temperature_sign == 0 else controller_temperature
         return controller_temperature
 
+    def get_maximum_solar_power_today(self):
+        """Max solar power today"""
+        return self.retriable_read_register(0x010F, 0, 3)
+
+    def get_minimum_solar_power_today(self):
+        """Min solar power today"""
+        return self.retriable_read_register(0x0110, 0, 3)
+
+    def get_maximum_battery_voltage_today(self):
+        """Maximum solar power today"""
+        return self.retriable_read_register(0x010C, 1, 3)
+
+    def get_minimum_battery_voltage_today(self):
+        """Minimum solar power today"""
+        return self.retriable_read_register(0x010B, 1, 3)
+
     def get_battery_status(self):
         """Battery status"""
         raise NotImplementedError
@@ -217,14 +233,6 @@ class RenogyChargeController(minimalmodbus.Instrument):
 
     def is_device_over_temperature(self):
         """Over temperature inside the device"""
-        raise NotImplementedError
-
-    def get_maximum_battery_voltage_today(self):
-        """Maximum battery voltage today"""
-        raise NotImplementedError
-
-    def get_minimum_battery_voltage_today(self):
-        """Minimum battery voltage today"""
         raise NotImplementedError
 
     def get_rated_charging_current(self):
