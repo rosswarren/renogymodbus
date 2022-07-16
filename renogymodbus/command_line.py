@@ -23,11 +23,11 @@ def main():
     print(f"Load power: {controller.get_load_power()}W")
     print(f"Battery voltage: {controller.get_battery_voltage()}V")
     print(f"Battery state of charge: {controller.get_battery_state_of_charge()}%")
-    #print(f"Battery temperature: {controller.get_battery_temperature()}°C")
+    print(f"Battery temperature: {controller.get_battery_temperature()}°C")
     #print(
     #    f"Remote battery temperature: {controller.get_remote_battery_temperature()}°C"
     #)
-    #print(f"Controller temperature: {controller.get_controller_temperature()}°C")
+    print(f"Controller temperature: {controller.get_controller_temperature()}°C")
     #print(f"Battery status: {controller.get_battery_status()}")
     #print(f"Charging equipment status: {controller.get_charging_equipment_status()}")
     #print(
