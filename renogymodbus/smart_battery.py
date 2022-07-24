@@ -42,3 +42,15 @@ class RenogySmartBattery(minimalmodbus.Instrument):
         The voltage in Volts.
         """
         return self.retriable_read_register(0x13b3, 1)
+
+    def get_remaining_charge(self):
+        """
+        The remaining charge in Ah.
+        """
+        return self.retriable_read_register(0x13b4, 2)
+
+    def get_capacity(self):
+        """
+        The capacity in Ah.
+        """
+        return self.retriable_read_register(0x13b6, 2)
