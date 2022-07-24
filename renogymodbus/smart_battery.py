@@ -32,7 +32,13 @@ class RenogySmartBattery(minimalmodbus.Instrument):
         )
 
     def get_current(self):
+        """
+        The current in Amps.
+        """
         return self.retriable_read_register(0x13b2, 1)
     
     def get_voltage(self):
+        """
+        The voltage in Volts.
+        """
         return self.retriable_read_register(0x13b3, 1)

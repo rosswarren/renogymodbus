@@ -1,6 +1,12 @@
 import minimalmodbus
 
 def find_slaveaddress(portname):
+    """
+    Find the slave address of a modbus device.
+
+    Args:
+        portname: The name of the serial port.
+    """
     instrument = minimalmodbus.Instrument(portname, slaveaddress=247)
     instrument.serial.baudrate = 9600
     instrument.serial.timeout = 0.1
