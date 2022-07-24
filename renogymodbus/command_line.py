@@ -1,4 +1,4 @@
-from renogymodbus.driver import RenogyChargeController
+from renogymodbus.charge_controller import RenogyChargeController
 import argparse
 
 

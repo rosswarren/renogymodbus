@@ -1,7 +1,6 @@
 import minimalmodbus
 import serial
 from retrying import retry
-from renogymodbus.extract_bits import extract_bits
 
 
 class RenogyChargeController(minimalmodbus.Instrument):

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="renogymodbus",
-    version="0.0.15",
+    version="0.0.16",
     description="",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
