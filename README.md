@@ -41,8 +41,6 @@ pip3 install renogymodbus
 
 ## Command line utility
 
-**Note: the command line utility only currently works for Charge Controllers, not batteries. Battery support will be added soon.**
-
 To run the command line utility and see the debug output run the following on the command line:
 
 ```sh
@@ -51,18 +49,23 @@ renogymodbus --portname /dev/ttyUSB0 --slaveaddress 1
 
 ```sh
 usage: renogymodbus [-h] [--portname PORTNAME] [--slaveaddress SLAVEADDRESS]
+                   [--device {charge_controller,smart_battery}]
+                   [--find-slave-address]
 
 optional arguments:
   -h, --help            show this help message and exit
   --portname PORTNAME   Port name for example /dev/ttyUSB0
   --slaveaddress SLAVEADDRESS
                         Slave address 1-247
+  --device {charge_controller,smart_battery}
+                        Device to read data from. Either charge_controller or
+                        smart_battery
+  --find-slave-address  Find slave address of modbus device
 ```
 
-Example output
-
+Example output for charge controller
 ```sh
-Real Time Data
+Real Time Charge Controller Data
 Solar voltage: 43.1V
 Solar current: 0.09A
 Solar power: 4W
@@ -77,6 +80,16 @@ Maximum solar power today: 51W
 Minimum solar power today: 0W
 Maximum battery voltage today: 14.0V
 Minimum battery voltage today: 13.1V
+```
+
+Example output for smart battery
+```
+Real Time Smart Battery Data
+Voltage: 13.2V
+Current: -0.19A
+Capacity: 100000mAh
+Remaining charge: 97898mAh
+State of charge: 97.898%
 ```
 
 ## Python usage

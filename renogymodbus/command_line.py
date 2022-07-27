@@ -1,6 +1,6 @@
-from renogymodbus.charge_controller import RenogyChargeController
 import argparse
-
+from renogymodbus import RenogyChargeController, RenogySmartBattery
+from renogymodbus.find_slaveaddress import find_slaveaddress
 
 def main():
     parser = argparse.ArgumentParser()
@@ -10,11 +10,34 @@ def main():
     parser.add_argument(
         "--slaveaddress", help="Slave address 1-247", default=1, type=int
     )
+    parser.add_argument(
+        "--device", help="Device to read data from. Either charge_controller or smart_battery", choices=["charge_controller", "smart_battery"], default="charge_controller", type=str
+    )
+    parser.add_argument(
+        "--find-slave-address", help="Find slave address of modbus device", action="store_true", default=False
+    )
     args = parser.parse_args()
 
+    if args.find_slave_address:
+        print("Finding slave addresses...")
+        addresses = find_slaveaddress(args.portname)
+
+        if len(addresses) == 0:
+            print("No modbus devices found")
+        else:
+            print("Found modbus devices at addresses:")
+            for address in addresses:
+                print(f"{address}")
+    elif args.device == "charge_controller":
+        print_charge_controller_output(args)
+    elif args.device == "smart_battery":
+        print_smart_battery_output(args)
+
+
+def print_charge_controller_output(args):
     controller = RenogyChargeController(args.portname, args.slaveaddress)
 
-    print("Real Time Data")
+    print("Real Time Charge Controller Data")
     print(f"Solar voltage: {controller.get_solar_voltage()}V")
     print(f"Solar current: {controller.get_solar_current()}A")
     print(f"Solar power: {controller.get_solar_power()}W")
@@ -29,69 +52,16 @@ def main():
     print(f"Minimum solar power today: { controller.get_minimum_solar_power_today()}W")
     print(f"Maximum battery voltage today: { controller.get_maximum_battery_voltage_today()}V")
     print(f"Minimum battery voltage today: { controller.get_minimum_battery_voltage_today()}V")
-    #print(f"Battery status: {controller.get_battery_status()}")
-    #print(f"Charging equipment status: {controller.get_charging_equipment_status()}")
-    #print(
-    #    "Discharging equipment status:", controller.get_discharging_equipment_status()
-    #)
-    # print(f"Day time: {controller.is_day()}")
-    # print(f"Night time: {controller.is_night()}")
-    # print(
-    #     f"Maximum battery voltage today: {controller.get_maximum_battery_voltage_today()}V"
-    # )
-    # print(
-    #     f"Minimum battery voltage today: {controller.get_minimum_battery_voltage_today()}V"
-    # )
-    # print(f"Device over temperature: {controller.is_device_over_temperature()}")
-    # print("\n")
 
-    # print("Battery Parameters:")
-    # print(f"Rated charging current: {controller.get_rated_charging_current()}A")
-    # print(f"Rated load current: {controller.get_rated_load_current()}A")
-    # print(f"Battery real rated voltage: {controller.get_battery_real_rated_voltage()}V")
-    # print(f"Battery type: {controller.get_battery_type()}")
-    # print(f"Battery capacity: {controller.get_battery_capacity()}AH")
-    # print(
-    #     "Temperature compensation coefficient:",
-    #     controller.get_temperature_compensation_coefficient(),
-    # )
-    # print(
-    #     f"Over voltage disconnect voltage: {controller.get_over_voltage_disconnect_voltage()}V"
-    # )
-    # print(f"Charging limit voltage: {controller.get_charging_limit_voltage()}V")
-    # print(
-    #     f"Over voltage reconnect voltage: {controller.get_over_voltage_reconnect_voltage()}V"
-    # ),
-    # print(f"Equalize charging voltage: {controller.get_equalize_charging_voltage()}V")
-    # print(f"Boost charging voltage: {controller.get_boost_charging_voltage()}V")
-    # print(f"Float charging voltage: {controller.get_float_charging_voltage()}V")
-    # print(
-    #     f"Boost reconnect charging voltage: {controller.get_boost_reconnect_charging_voltage()}V"
-    # ),
-    # print(
-    #     f"Low voltage reconnect voltage: {controller.get_low_voltage_reconnect_voltage()}V"
-    # )
-    # print(
-    #     f"Under voltage recover voltage: {controller.get_under_voltage_recover_voltage()}V"
-    # )
-    # print(
-    #     f"Under voltage warning voltage: {controller.get_under_voltage_warning_voltage()}V"
-    # )
-    # print(
-    #     f"Low voltage disconnect voltage: {controller.get_low_voltage_disconnect_voltage()}V"
-    # )
-    # print(f"Discharging limit voltage: {controller.get_discharging_limit_voltage()}V")
-    # print(f"Battery rated voltage: {controller.get_battery_rated_voltage()}")
-    # print(
-    #     "Default load on/off in manual mode:",
-    #     controller.get_default_load_on_off_in_manual_mode(),
-    # )
-    # print(f"Equalize duration: {controller.get_equalize_duration()} min")
-    # print(f"Boost duration: {controller.get_boost_duration()} min")
-    # print(f"Battery discharge: {controller.get_battery_discharge()}%")
-    # print(f"Battery charge: {controller.get_battery_charge()}%")
-    # print(f"Charging mode: {controller.get_charging_mode()}")
+def print_smart_battery_output(args):
+    battery = RenogySmartBattery(args.portname, args.slaveaddress)
 
+    print("Real Time Smart Battery Data")
+    print(f"Voltage: {battery.get_voltage()}V")
+    print(f"Current: {battery.get_current()}A")
+    print(f"Capacity: {battery.get_capacity()}mAh")
+    print(f"Remaining charge: {battery.get_remaining_charge()}mAh")
+    print(f"State of charge: {battery.get_state_of_charge()}%")
 
 if __name__ == "__main__":
     main()
