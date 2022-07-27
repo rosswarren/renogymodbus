@@ -25,17 +25,25 @@ class RenogySmartBattery(minimalmodbus.Instrument):
 
     @retry(wait_fixed=200, stop_max_attempt_number=5)
     def retriable_read_register(
-        self, registeraddress, number_of_decimals, functioncode=3
+        self, registeraddress, number_of_decimals, functioncode=3, signed=False
     ):
         return self.read_register(
-            registeraddress, number_of_decimals, functioncode, False
+            registeraddress, number_of_decimals, functioncode, signed
+        )
+
+    @retry(wait_fixed=200, stop_max_attempt_number=5)
+    def retriable_read_long(
+        self, registeraddress
+    ):
+        return self.read_long(
+            registeraddress
         )
 
     def get_current(self):
         """
         The current in Amps.
         """
-        return self.retriable_read_register(0x13b2, 1)
+        return self.retriable_read_register(0x13b2, 2, 3, True)
     
     def get_voltage(self):
         """
@@ -45,12 +53,18 @@ class RenogySmartBattery(minimalmodbus.Instrument):
 
     def get_remaining_charge(self):
         """
-        The remaining charge in Ah.
+        The remaining charge in mAh.
         """
-        return self.retriable_read_register(0x13b4, 2)
+        return self.retriable_read_long(0x13b4)
 
     def get_capacity(self):
         """
-        The capacity in Ah.
+        The capacity in mAh.
         """
-        return self.retriable_read_register(0x13b6, 2)
+        return self.retriable_read_long(0x13b6)
+
+    def get_state_of_charge(self):
+        """
+        The state of charge as a percentage.
+        """
+        return (self.get_remaining_charge() / self.get_capacity()) * 100
