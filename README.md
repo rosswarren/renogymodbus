@@ -41,6 +41,8 @@ pip3 install renogymodbus
 
 ## Command line utility
 
+**Note: the command line utility only currently works for Charge Controllers, not batteries. Battery support will be added soon.**
+
 To run the command line utility and see the debug output run the following on the command line:
 
 ```sh
@@ -81,11 +83,23 @@ Minimum battery voltage today: 13.1V
 
 To use the library within your Python code
 
+### Charge Controller
+
 ```python
-from renogymodbus.driver import RenogyChargeController
+from renogymodbus import RenogyChargeController
 
 controller = RenogyChargeController("/dev/ttyUSB0", 1)
 controller.get_solar_voltage()
 ```
 
-See https://github.com/rosswarren/renogymodbus/blob/main/renogymodbus/driver.py for all available methods
+See https://github.com/rosswarren/renogymodbus/blob/main/renogymodbus/charge_controller.py for all available methods
+
+### Smart Battery
+
+```python
+from renogymodbus import RenogySmartBattery
+
+battery = RenogySmartBattery("/dev/ttyUSB0", 48)
+battery.get_voltage()
+```
+See https://github.com/rosswarren/renogymodbus/blob/main/renogymodbus/smart_battery.py for all available methods
