@@ -6,8 +6,8 @@ This package is intended to help you communicate with a Renogy charge controller
 * Read real time data
 * Automatic retries
 
-## Connecting to the charge controller
-Please check whether your charge controller has a rs232 or rs485 port.
+## Connecting to the charge controller or battery
+Please check whether your charge controller or battery has a rs232 or rs485 port.
 
 ### rs485
 Voucher code for 7% off Renogy: https://go.referralcandy.com/share/672HVC9
@@ -44,10 +44,6 @@ pip3 install renogymodbus
 To run the command line utility and see the debug output run the following on the command line:
 
 ```sh
-renogymodbus --portname /dev/ttyUSB0 --slaveaddress 1
-```
-
-```sh
 usage: renogymodbus [-h] [--portname PORTNAME] [--slaveaddress SLAVEADDRESS]
                    [--device {charge_controller,smart_battery}]
                    [--find-slave-address]
@@ -61,6 +57,19 @@ optional arguments:
                         Device to read data from. Either charge_controller or
                         smart_battery
   --find-slave-address  Find slave address of modbus device
+```
+
+Example commands:
+```sh
+renogymodbus --device smart_battery --portname /dev/ttyUSB0 --slaveaddress 48
+```
+
+```sh
+renogymodbus --device charge_controller --portname /dev/ttyUSB0 --slaveaddress 1
+```
+
+```sh
+renogymodbus --find-slave-address --portname /dev/ttyUSB0
 ```
 
 Example output for charge controller
