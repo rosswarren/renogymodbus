@@ -9,6 +9,12 @@ This package is intended to help you communicate with a Renogy charge controller
 ## Connecting to the charge controller or battery
 Please check whether your charge controller or battery has a rs232 or rs485 port.
 
+This library has been tested with the following devices:
+* Renogy Rover Elite 20A MPPT Solar Charge Controller
+* Renogy 12V 100Ah Smart Lithium Iron Phosphate Battery
+
+The library should work with other Renogy devices, please raise an issue if you have problems or have tested that the library works with your device.
+
 ### rs485
 Voucher code for 7% off Renogy: https://go.referralcandy.com/share/672HVC9
 
