@@ -85,11 +85,21 @@ Minimum battery voltage today: 13.1V
 Example output for smart battery
 ```
 Real Time Smart Battery Data
-Voltage: 13.2V
-Current: -0.19A
-Capacity: 100000mAh
-Remaining charge: 97898mAh
-State of charge: 97.898%
+Cell voltages: [3.3, 3.3, 3.3, 3.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]V
+Cell temperatures: [24.0, 24.0, 24.0, 24.0, 1835.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]°C
+BMS temperature: 0.0°C
+Environment temperatures: [25.0, 25.0]°C
+Heater temperatures: [25.0, 25.0]°C
+Current: -0.2A
+Voltage: 13.3V
+Remaining capacity: 98.966Ah
+Total capacity: 100.0Ah
+State of charge: 98.966%
+Cycle number: 0
+Charge voltage limit: 14.8V
+Discharge voltage limit: 10.0V
+Charge current limit: 50.0A
+Discharge current limit: -100.0A
 ```
 
 ## Python usage
