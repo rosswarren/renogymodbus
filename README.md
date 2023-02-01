@@ -16,7 +16,7 @@ The library should work with other Renogy devices, please raise an issue if you 
 Please check whether your charge controller or battery has a rs232 or rs485 port.
 
 ### rs485
-Voucher code for 7% off Renogy: https://go.referralcandy.com/share/672HVC9
+Voucher code for 7% off Renogy: http://73renogy.refr.cc/rosswarren
 
 * rs485 to USB serial cable (UK) https://uk.renogy.com/rs485-to-usb-serial-cable/
 * rs485 to USB serial cable (US) https://renogy.com/rs485-to-usb-serial-cable/
