@@ -28,6 +28,34 @@ Unfortunately the rs232 to USB serial cable has been discontinued by Renogy. It 
 
 <img width="690" alt="image" src="https://user-images.githubusercontent.com/613642/179362464-35bde1f8-fcb2-43d8-8a52-0232ffa210e8.png">
 
+### Waveshare TCP serial converter
+
+For a Waveshare converter in **TCP Server** mode, use the converter's IP address
+and device port as the TCP endpoint. The serial settings should match the
+controller: **9600 baud, 8 data bits, no parity, 1 stop bit, and no flow
+control**. The screenshot's TCP Server mode, port `4196`, and serial settings
+match these requirements. For a transparent serial tunnel, leave Protocol set
+to **None** and Multi-host disabled. Destination IP/Port are for TCP Client
+mode and are not used in TCP Server mode.
+
+The converter is using DHCP in the shown configuration. Reserve its current IP
+address in DHCP (or configure a static address outside the DHCP pool) so the
+endpoint does not change.
+
+Run the connection test from the project directory:
+
+```sh
+uv run python main.py
+```
+
+By default, the test connects to `172.17.204.243:4196`, reads the controller's
+battery-voltage register, and assumes Modbus slave address `1`. Override these
+values when needed:
+
+```sh
+uv run python main.py --host 172.17.204.243 --tcp-port 4196 --slave-address 1
+```
+
 
 ## Installing the package
 
